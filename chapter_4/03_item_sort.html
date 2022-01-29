@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>商品一覧</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+<link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<style>
+    th > div.sort.desc::after {
+        display: inline-block;
+        content: '▼';
+    }
+    th > div.sort.asc::after {
+        display: inline-block;
+        content: '▲';
+    }
+    th > div { 
+        cursor: pointer;
+    }
+    .color {
+        display: inline-block;
+        height: 1em;
+        width: 1em;
+        margin-right: 2px;
+    }
+</style>
+</head>
+<body>
+<div class="container" id="app">
+    <main class="main">
+        <section class="block">
+            <h1 class="block-title">商品一覧</h1>
+            <div class="block-body">
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>商品名</th>
+                                <th>価格</th>
+                                <th>色</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in result">
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.price }}</td>
+                                <td><div class="color">{{ item.colorName }}</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+<script>
+    const items = [
+        { id: 1, name: 'りんご', price: 100, colorName: '赤', colorCode: 'red'},
+        { id: 2, name: 'みかん', price: 150, colorName: 'オレンジ', colorCode: 'orange'},
+        { id: 3, name: 'ぶどう', price: 300, colorName: '紫', colorCode: 'purple'},
+        { id: 4, name: 'バナナ', price: 50, colorName: '黄', colorCode: 'yellow'},
+        { id: 5, name: 'メロン', price: 550, colorName: '緑', colorCode: 'green'},
+        { id: 6, name: 'すいか', price: 400, colorName: '緑', colorCode: 'green'},
+        { id: 7, name: 'トマト', price: 120, colorName: '赤', colorCode: 'red'},
+        { id: 8, name: 'レモン', price: 110, colorName: '黄', colorCode: 'yellow'},
+        { id: 9, name: 'いちご', price: 200, colorName: '赤', colorCode: 'red'},
+        { id: 10, name: '桃', price: 150, colorName: 'ピンク', colorCode: 'pink'},
+    ];
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            sort: {
+                key: '',
+                isAsc: false
+            }
+        },
+        computed: {
+            result: function() {
+                let list = items.slice();
+                return list;
+            }
+        }
+    });
+</script>
+</body>
+</html>
