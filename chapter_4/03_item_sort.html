@@ -48,7 +48,7 @@
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.name }}</td>
                                 <td>{{ item.price }}</td>
-                                <td><div class="color">{{ item.colorName }}</div></td>
+                                <td><div class="color" :style="'background-color:' + item.colorCode">{{ item.colorName }}</div></td>
                             </tr>
                         </tbody>
                     </table>
